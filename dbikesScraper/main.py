@@ -58,9 +58,10 @@ def insert_into_availability(text):
     for station in stations:
         
         now = datetime.fromtimestamp( int(station.get("last_update")/ 1e3) )
+        date = now.date()
         today = now.weekday()
         day = calendar.day_name[today]
         time = now.strftime("%H:%M")
-        values = (station.get("number"), station.get("available_bike_stands"), station.get("available_bikes"), station.get("status"), day, time)
+        values = (station.get("number"), station.get("available_bike_stands"), station.get("available_bikes"), station.get("status"), date, day, time)
         
-        engine.execute("INSERT INTO availability VALUES(%s,%s,%s,%s,%s,%s)", values) 
+        engine.execute("INSERT INTO availability VALUES(%s,%s,%s,%s,%s,%s,%s)", values) 
