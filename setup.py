@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="dbikes_scraper",
-    version="0.1",
+    version="0.2",
     description="Data scraper for dublin bikes API",
     author="Conor Kiy",
     author_email="conorkiy@gmail.com",
