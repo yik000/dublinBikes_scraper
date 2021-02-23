@@ -6,12 +6,9 @@ Created on 19 Feb 2021
 
 import dbinfo
 import datetime
-from datetime import datetime
 import requests
 import time
-import json
-import calendar
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String, DateTime, insert
 import traceback
 
 
