@@ -4,6 +4,7 @@ Created on 19 Feb 2021
 @author: conorkiy@gmail.com
 """
 
+
 import dbinfo
 import datetime
 import requests
@@ -22,7 +23,7 @@ STATIONS="https://api.jcdecaux.com/vls/v1/stations?"
 """
 create engine - connect to database
 """
-engine = create_engine("mysql+mysqldb://{}:{}@{}:3306/dbikes".format(dbinfo.USER, dbinfo.PASS, dbinfo.URI), echo=True)
+engine = create_engine("mysql+mysqldb://{}:{}@{}:3306/dbikes".format(dbinfo.USER, dbinfo.PASS, dbinfo.URI))
 
 meta = MetaData()
 availability = Table(
@@ -33,6 +34,7 @@ availability = Table(
     Column('status', String(256)),
     Column('last_update', DateTime)
 )
+
 
 """
 main
@@ -65,4 +67,4 @@ def get_availability(stations):
         'avail_bikes': stations['available_bikes'],
         'status': stations['status'],
         'last_update': datetime.datetime.fromtimestamp( stations['last_update'] / 1e3 )
-           } 
+           }
