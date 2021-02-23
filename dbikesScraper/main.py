@@ -32,9 +32,10 @@ def main():
     while True:
         try:
 
-            api_request = requests.get(STATIONS, params={"contract":NAME, "apiKey": dbinfo.APIKEY})
-
-            insert_into_availability(api_request.text)
+            apiRequest = requests.get(STATIONS, params={"contract":NAME, "apiKey": dbinfo.APIKEY})
+            values = list(map( get_availability, apiRequest.json() ))
+            insert = availability.insert().values(values)
+            engine.execute(insert)
 
             time.sleep(5*60)
 
