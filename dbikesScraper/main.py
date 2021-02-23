@@ -23,7 +23,7 @@ STATIONS="https://api.jcdecaux.com/vls/v1/stations?"
 """
 create engine - connect to database
 """
-engine = create_engine("mysql+mysqldb://{}:{}@{}:3306/dbikes".format(dbinfo.USER, dbinfo.PASS, dbinfo.URI))
+engine = create_engine("mysql+mysqlconnector://{}:{}@{}:3306/dbikes".format(dbinfo.USER, dbinfo.PASS, dbinfo.URI))
 
 meta = MetaData()
 availability = Table(
