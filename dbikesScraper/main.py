@@ -24,6 +24,15 @@ create engine - connect to database
 """
 engine = create_engine("mysql+mysqldb://{}:{}@{}:3306/dbikes".format(dbinfo.USER, dbinfo.PASS, dbinfo.URI), echo=True)
 
+meta = MetaData()
+availability = Table(
+    'availability', meta,
+    Column('number', Integer),
+    Column('avail_stands', Integer),
+    Column('avail_bikes', Integer),
+    Column('status', String(256)),
+    Column('last_update', DateTime)
+)
 
 """
 main
