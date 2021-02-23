@@ -56,18 +56,13 @@ def main():
 
 
 """
-insert into availability
+get availability data
 """
-def insert_into_availability(text):
-
-    stations = json.loads(text)
-
-    for station in stations:
-        
-        now = datetime.fromtimestamp( int(station.get("last_update")/ 1e3) )
-        today = now.weekday()
-        day = calendar.day_name[today]
-        time = now.strftime("%H:%M")
-        values = (station.get("number"), station.get("available_bike_stands"), station.get("available_bikes"), station.get("status"), day, time)
-        
-        engine.execute("INSERT INTO availability VALUES(%s,%s,%s,%s,%s,%s)", values) 
+def get_availability(stations):
+    return {
+        'number': stations['number'],
+        'avail_stands': stations['available_bike_stands'],
+        'avail_bikes': stations['available_bikes'],
+        'status': stations['status'],
+        'last_update': datetime.datetime.fromtimestamp( stations['last_update'] / 1e3 )
+           } 
