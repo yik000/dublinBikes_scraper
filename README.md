@@ -18,7 +18,7 @@ Create `dbinfo.py` file in `~/miniconda3/envs/enviroment/bin/dbikes_scraper` wit
 Run module in the background.
 
 ```bash
-dbikes_scraper >/dev/null &
+nohup dbikes_scraper &
 ```
 
 ***
