@@ -21,4 +21,12 @@ Run module in the background.
 nohup dbikes_scraper &
 ```
 
+Then:
+
+```bash
+echo $! >> scraper_process.pid
+```
+
+to store pid of scraper.
+
 ***
