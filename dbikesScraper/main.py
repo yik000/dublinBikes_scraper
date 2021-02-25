@@ -61,10 +61,14 @@ def main():
 get availability data
 """
 def get_availability(stations):
-    return {
-        'number': stations['number'],
-        'avail_stands': stations['available_bike_stands'],
-        'avail_bikes': stations['available_bikes'],
-        'status': stations['status'],
-        'last_update': datetime.datetime.fromtimestamp( stations['last_update'] / 1e3 )
-           }
+    try:
+        return {
+            'number': stations['number'],
+            'avail_stands': stations['available_bike_stands'],
+            'avail_bikes': stations['available_bikes'],
+            'status': stations['status'],
+            'last_update': datetime.datetime.fromtimestamp( stations['last_update'] / 1e3 )
+        }
+    except:
+        pass
+        
