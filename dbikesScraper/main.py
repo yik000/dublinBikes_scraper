@@ -43,8 +43,9 @@ def main():
     while True:
         try:
 
-            apiRequest = requests.get(STATIONS, params={"contract":NAME, "apiKey": dbinfo.APIKEY})
-            values = list(map( get_availability, apiRequest.json() ))
+            api_request = requests.get(STATIONS, params={"contract":NAME, "apiKey": dbinfo.APIKEY})
+            values = list(map( get_availability, api_request.json() ))
+            remove_none(values)
             insert = availability.insert().values(values)
             engine.execute(insert)
 
@@ -70,5 +71,15 @@ def get_availability(stations):
             'last_update': datetime.datetime.fromtimestamp( stations['last_update'] / 1e3 )
         }
     except:
-        pass
+        print("\nError on station number: {}\n".format(stations['number']))
+        print(traceback.format_exc())
+        print(" - " * 10)
         
+
+"""
+remove none values
+"""
+def remove_none(values):
+    for station_data in values:
+        if station_data == None:
+            values.remove(station_data)
